@@ -13,7 +13,8 @@
 		<module>fim-client</module>
         <module>fim-registry-zookeeper</module>
 		<module>fim-admin</module>
-	</modules>
+        <module>fim-redis</module>
+    </modules>
 	<name>fim</name>
 	<description>im</description>
 	<packaging>pom</packaging>

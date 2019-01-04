@@ -1,0 +1,11 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /fim
+
+fim:
+  register:
+    address: 192.168.88.129:2181
+    timeout: 2000
+  redis:
+    host: 192.168.88.129

@@ -27,6 +27,7 @@
  ````
  
  ### 存储
+ - 用户注册信息存储到Mysql数据库
  - 使用 zk 存储所有注册的服务端信息
  - 使用 redis 存储登陆信息和chat服务器的关系
  
@@ -35,6 +36,17 @@
  
  - chat服务器可以水平扩展
  - connector服务器也可以水平扩展
+ 
+ 
+ ### 安装
+ - redis.conf
+ ````
+ bind 0.0.0.0
+ requirepass root123
+ daemonize yes
+ 
+ src/redis-server redis.conf
+ ````
  
  
  
