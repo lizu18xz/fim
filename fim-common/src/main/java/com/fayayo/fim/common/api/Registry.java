@@ -23,4 +23,6 @@ public interface Registry {
     List<URL> discover();
 
 
+    void setWatchNotify(WatchNotify watchNotify);
+
 }

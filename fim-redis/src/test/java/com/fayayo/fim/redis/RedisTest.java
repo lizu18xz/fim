@@ -1,6 +1,7 @@
 package com.fayayo.fim.redis;
 
 import com.fayayo.fim.redis.base.BasePrefix;
+import com.fayayo.fim.redis.key.TestKey;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisShardInfo;
 import redis.clients.jedis.ShardedJedisPool;
@@ -25,11 +26,10 @@ public class RedisTest {
         //具体获取连接的时候才会报错
         RedisTemplate redisTemplate=new RedisTemplate(shardedJedisPool);
 
-        BasePrefix basePrefix=new BasePrefix(30,"abc");
-        redisTemplate.set(basePrefix,"abb","134");
+        redisTemplate.set(TestKey.testKey,"abb","134");
 
 
-        System.out.println(redisTemplate.get(basePrefix,"abb",String.class));
+        System.out.println(redisTemplate.get(TestKey.testKey,"abb",String.class));
 
         shardedJedisPool.close();
     }

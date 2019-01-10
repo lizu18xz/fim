@@ -14,6 +14,7 @@
         <module>fim-registry-zookeeper</module>
 		<module>fim-admin</module>
         <module>fim-redis</module>
+        <module>fim-transport</module>
     </modules>
 	<name>fim</name>
 	<description>im</description>
@@ -85,7 +86,7 @@
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<scope>runtime</scope>
-				<version>${mysql.version}}</version>
+				<version>${mysql.version}</version>
 			</dependency>
 
 

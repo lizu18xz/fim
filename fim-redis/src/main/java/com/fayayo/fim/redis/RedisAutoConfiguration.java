@@ -30,7 +30,7 @@ public class RedisAutoConfiguration {
     @Bean
     public RedisTemplate redisTemplate(){
 
-        log.info("config redisPool success");
+        log.info("support redisPool success");
         return new RedisTemplate(shardedJedisPool());
     }
 

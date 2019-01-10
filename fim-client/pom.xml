@@ -11,5 +11,26 @@
 
     <artifactId>fim-client</artifactId>
 
+    <dependencies>
+
+        <dependency>
+            <groupId>com.fayayo</groupId>
+            <artifactId>fim-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fayayo</groupId>
+            <artifactId>fim-transport</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+
+
+    </dependencies>
 
 </project>

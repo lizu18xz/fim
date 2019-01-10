@@ -15,7 +15,7 @@ public class JsonMapper {
     private static ObjectMapper objectMapper = new ObjectMapper();
 
     static {
-        // config  解决  字段不匹配的实体对象
+        // support  解决  字段不匹配的实体对象
         objectMapper.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
         objectMapper.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
         objectMapper.setFilters(new SimpleFilterProvider().setFailOnUnknownId(false));

@@ -1,6 +1,7 @@
 package com.fayayo.fim.zookeeper;
 
 import com.fayayo.fim.common.api.Registry;
+import com.fayayo.fim.common.api.WatchNotify;
 import com.fayayo.fim.common.closable.ShutDownHook;
 import com.fayayo.fim.common.core.URL;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,9 @@ public class ZookeeperRegistry implements Registry, Closeable {
 
     private ZkClient zkClient;
 
+    private WatchNotify watchNotify;
+
+
     public ZookeeperRegistry(ZkClient zkClient) {
         this.zkClient = zkClient;
 
@@ -40,12 +44,16 @@ public class ZookeeperRegistry implements Registry, Closeable {
                 @Override
                 public void handleChildChange(String parentPath, List<String> currentChilds) {
                     log.info(String.format("[ZookeeperRegistry] service list change: path=%s, currentChilds=%s", parentPath, currentChilds.toString()));
+                    if(watchNotify!=null){
+                        watchNotify.notify(nodeChildsToUrls(currentChilds));
+                    }
                 }
             });
 
             ShutDownHook.registerShutdownHook(this);
 
         } catch (Exception e) {
+            e.printStackTrace();
             log.error("Failed to subscribe zookeeper");
         }
     }
@@ -57,6 +65,7 @@ public class ZookeeperRegistry implements Registry, Closeable {
         try {
             createNode(url, false);
         } catch (Throwable e) {
+            e.printStackTrace();
             log.error("Failed to register url to zookeeper, cause: ", e.getMessage());
         } finally {
 
@@ -79,6 +88,11 @@ public class ZookeeperRegistry implements Registry, Closeable {
         return null;
     }
 
+    @Override
+    public void setWatchNotify(WatchNotify watchNotify) {
+        this.watchNotify=watchNotify;
+    }
+
     private List<URL> nodeChildsToUrls(List<String> currentChilds) {
 
         List<URL> urls = new ArrayList<URL>();
@@ -96,7 +110,7 @@ public class ZookeeperRegistry implements Registry, Closeable {
                     try {
                         newurl = new URL();
 
-                        String datas[] = data.split("-");
+                        String datas[] = data.split(":");
 
                         newurl.setHost(datas[0]);
                         newurl.setPort(Integer.parseInt(datas[1]));
@@ -122,7 +136,7 @@ public class ZookeeperRegistry implements Registry, Closeable {
                 zkClient.createPersistent(nodePath, true);
             }
         } else {
-            zkClient.createEphemeral(nodePath, url.getHost() + "-" + url.port);
+            zkClient.createEphemeral(nodePath, url.toAddress());
         }
     }
 
@@ -134,7 +148,7 @@ public class ZookeeperRegistry implements Registry, Closeable {
 
     private String toNodePath(URL url) {
 
-        String nodePath = url.getHost() + "-" + url.port;
+        String nodePath = url.toRegisterPath();
 
         return toParentNodePath() + URLParam.PATH_SEPARATOR + nodePath;
     }

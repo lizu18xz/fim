@@ -5,7 +5,7 @@ package com.fayayo.fim.redis.base;
  * @version v1.0
  * @desc
  */
-public class BasePrefix implements RedisKeyPrefix {
+public abstract class BasePrefix implements RedisKeyPrefix {
 
     private int expiredSeconds;
 

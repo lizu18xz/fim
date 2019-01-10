@@ -9,3 +9,14 @@ fim:
     timeout: 2000
   redis:
     host: 192.168.88.129
+    password: root123
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/fim?user=root&password=root123&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
+    time-zone: GMT+8

@@ -12,6 +12,17 @@ public class URL {
     public int port;
 
     public URL() {
+
+    }
+
+    public URL(String address) {
+        String datas[]=address.split(":");
+        if(datas.length!=2){
+            throw new IllegalArgumentException("地址格式不对");
+        }
+
+        host=datas[0];
+        port=Integer.parseInt(datas[1]);
     }
 
     public URL(String host, int port) {
@@ -34,4 +45,14 @@ public class URL {
     public void setPort(int port) {
         this.port = port;
     }
+
+    public String toAddress(){
+
+        return host+":"+port;
+    }
+
+    public String toRegisterPath(){
+        return host+"-"+port;
+    }
+
 }
