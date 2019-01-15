@@ -41,6 +41,9 @@ public class SessionUtil {
 
     public static Session getSession(Channel channel) {
 
+        if(channel==null){
+            return null;
+        }
         return channel.attr(Attributes.SESSION).get();
     }
 

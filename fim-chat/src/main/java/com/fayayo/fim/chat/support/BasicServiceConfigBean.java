@@ -22,8 +22,8 @@ public class BasicServiceConfigBean implements InitializingBean{
     private URL url;
 
     public BasicServiceConfigBean(URL url, Registry registry) {
-        this.registry=registry;
         this.url=url;
+        this.registry=registry;
     }
 
 
@@ -41,7 +41,7 @@ public class BasicServiceConfigBean implements InitializingBean{
 
         //启动服务端
         CountDownLatch countDownLatch=new CountDownLatch(1);
-        log.info("启动chat服务器:{}",url.toAddress());
+        log.info("启动chat服务器:{}",url.toServerUrl());
         NettyServer server=new NettyServer(url,countDownLatch);
         server.start();
         try {

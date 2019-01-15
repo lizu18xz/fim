@@ -64,11 +64,16 @@ public class LoginConsoleCommand  {
         log.info("request result:{}",result);
         ResultVO<LoginInfo> resultVO=JsonMapper.string2Obj(result,new TypeReference<ResultVO<LoginInfo>>() { });
 
-        if(resultVO.getData()==null){
-            log.info("login error");
+        if(resultVO.isSuccess()){
+            if(resultVO.getData()==null){
+                log.info("login error");
+                return null;
+            }
+            return resultVO.getData();
+        }else {
+            log.error("request 【error】:{}",resultVO.getMsg());
             return null;
         }
-        return resultVO.getData();
     }
 
     private Channel initClient(URL url) {

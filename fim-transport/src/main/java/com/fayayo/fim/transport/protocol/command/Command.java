@@ -18,4 +18,10 @@ public interface Command {
 
     Byte LOGOUT_RESPONSE = 4;
 
+    //消息发送
+    Byte MESSAGE_REQUEST = 5;
+
+    Byte MESSAGE_RESPONSE = 6;
+
+
 }

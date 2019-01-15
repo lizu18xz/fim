@@ -15,29 +15,35 @@ import java.util.Scanner;
 @Slf4j
 public class ConsoleCommandManager implements ConsoleCommand{
 
+
     private Map<String, ConsoleCommand> consoleCommandMap;
 
     public ConsoleCommandManager() {
         consoleCommandMap = new HashMap<>();
         //指令合集(群聊,点对点聊...)
+
         consoleCommandMap.put("logout", new LogoutConsoleCommand());
 
+        //指定用户
+        consoleCommandMap.put("sendToUser", new SendToUserConsoleCommand());
+
+        //广播所有
+        consoleCommandMap.put("broadcast", new BroadcastConsoleCommand());
+
+        //指定一个群
 
     }
 
     @Override
-    public void exec(Scanner scanner, Channel channel) {
+    public void exec(Scanner scanner,Channel channel) {
         //  获取第一个指令
         String command = scanner.next();
 
-        if (channel==null) {
-            return;
-        }
-
         ConsoleCommand consoleCommand = consoleCommandMap.get(command);
 
+        //执行命令
         if (consoleCommand != null) {
-            consoleCommand.exec(scanner, channel);
+            consoleCommand.exec(scanner,channel);
         } else {
             log.error("无法识别[" + command + "]指令，请重新输入!");
         }

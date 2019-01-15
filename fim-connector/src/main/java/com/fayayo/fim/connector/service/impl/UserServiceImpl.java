@@ -49,19 +49,20 @@ public class UserServiceImpl implements UserService {
         User user=findUserByUserNameAndPassword(username,password);
         if(user!=null){
 
+            //判断是否已经登陆
+            URL url=redisTemplate.get(UserChatKey.userChatRel,user.getId(),URL.class);
+            if(url!=null){
+                return new LoginInfo(url,user.getId());
+            }
+
             //从注册中心获取一个可用的chat服务
             RoundRobinLoadBalance<URL>robinLoadBalance=new RoundRobinLoadBalance<>();
 
-            URL url=robinLoadBalance.doSelect(chatCache.getAll());
+            url=robinLoadBalance.doSelect(chatCache.getAll());
             if(url==null){
                 throw new FimServiceException(ConnectorErrorMsg.CHAT_SERVICE_NOFOUND);
             }
 
-            //判断是否已经登陆
-            url=redisTemplate.get(UserChatKey.userChatRel,user.getId(),URL.class);
-            if(url!=null){
-                return new LoginInfo(url,user.getId());
-            }
             //保存用户和chat服务的对应关系,user_key_id:address
             boolean bind=redisTemplate.set(UserChatKey.userChatRel,user.getId(),url);
             if(!bind){

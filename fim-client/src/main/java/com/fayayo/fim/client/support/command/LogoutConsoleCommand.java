@@ -10,14 +10,16 @@ import java.util.Scanner;
  * @version v1.0
  * @desc
  */
-public class LogoutConsoleCommand implements ConsoleCommand {
+public class LogoutConsoleCommand implements ConsoleCommand{
 
 
-    @Override
     public void exec(Scanner scanner, Channel channel) {
-        LogoutRequestPacket logoutRequestPacket = new LogoutRequestPacket();
-        channel.writeAndFlush(logoutRequestPacket);
+        try {
+            LogoutRequestPacket logoutRequestPacket = new LogoutRequestPacket();
+            channel.writeAndFlush(logoutRequestPacket);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
-
 
 }

@@ -17,7 +17,7 @@ import java.util.Date;
  * @desc
  */
 // 1. 加上注解标识，表明该 handler 是可以多个 channel 共享的
-    @Slf4j
+@Slf4j
 @ChannelHandler.Sharable
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket>{
 

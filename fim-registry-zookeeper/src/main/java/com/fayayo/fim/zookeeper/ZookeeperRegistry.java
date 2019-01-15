@@ -114,6 +114,7 @@ public class ZookeeperRegistry implements Registry, Closeable {
 
                         newurl.setHost(datas[0]);
                         newurl.setPort(Integer.parseInt(datas[1]));
+                        newurl.setHttpPort(Integer.parseInt(datas[2]));
 
                     } catch (Exception e) {
                         log.warn(String.format("Found malformed urls from ZookeeperRegistry, path=%s", nodePath), e);

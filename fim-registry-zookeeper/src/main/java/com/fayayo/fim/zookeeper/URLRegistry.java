@@ -1,6 +1,5 @@
 package com.fayayo.fim.zookeeper;
 
-import com.fayayo.fim.common.core.URL;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 

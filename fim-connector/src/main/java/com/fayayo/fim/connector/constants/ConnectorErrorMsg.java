@@ -13,4 +13,9 @@ public class ConnectorErrorMsg {
 
     public static final FimErrorMsg REDIS_ERROR = new FimErrorMsg(500,  501,"redis error");
 
+
+    public static final FimErrorMsg USER_OFFLINE = new FimErrorMsg(500,  601,"用户下线了");
+
+
+
 }

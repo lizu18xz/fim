@@ -14,11 +14,5 @@ public class ClientController {
 
 
 
-    //发起群聊
-
-
-
-    //发起私聊
-
 
 }

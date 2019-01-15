@@ -2,6 +2,7 @@ package com.fayayo.fim.client.support;
 
 import com.fayayo.fim.client.support.command.ConsoleCommandManager;
 import com.fayayo.fim.client.support.command.LoginConsoleCommand;
+import com.fayayo.fim.transport.util.SessionUtil;
 import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -30,7 +31,7 @@ public class BasicClientConfigBean implements InitializingBean {
         new Thread(() -> {
             while (!Thread.interrupted()) {
                 //首先要求登陆
-                if(channel==null){
+                if(!SessionUtil.hasLogin(channel)){
                     channel=loginConsoleCommand.exec(scanner);
                 }else {
                     consoleCommandManager.exec(scanner,channel);

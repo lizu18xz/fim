@@ -25,7 +25,7 @@ public class LoginRequestPacket extends Packet {
 
     @Override
     public String toString() {
-        return "LoginRequestPacket{" +
+        return "{" +
                 "userId='" + userId + '\'' +
                 ", username='" + username + '\'' +
                 '}';

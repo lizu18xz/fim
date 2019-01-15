@@ -1,11 +1,10 @@
-package com.fayayo.fim.connector.controller;
+package com.fayayo.fim.chat.controller;
 
+import com.fayayo.fim.chat.service.ChatService;
 import com.fayayo.fim.common.core.SendToUserRequest;
 import com.fayayo.fim.common.result.ResultVO;
 import com.fayayo.fim.common.result.ResultVOUtil;
-import com.fayayo.fim.connector.service.ConnectorService;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.annotation.Around;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,44 +12,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author dalizu on 2019/1/10.
+ * @author dalizu on 2019/1/15.
  * @version v1.0
  * @desc
  */
 @Slf4j
 @RestController
 @RequestMapping("/online/")
-public class ConnectorController {
+public class ChatController {
 
     @Autowired
-    private ConnectorService connectorService;
+    private ChatService chatService;
 
-    //私聊
-    @PostMapping("userChat")
-    public ResultVO userChat(@RequestBody SendToUserRequest sendToUserRequest){
-
+    @PostMapping("sendToUser")
+    public ResultVO sendToUser(@RequestBody SendToUserRequest sendToUserRequest){
 
         log.info("params:{}",sendToUserRequest.toString());
-        connectorService.userChat(sendToUserRequest);
+        chatService.sendToUser(sendToUserRequest);
 
         return ResultVOUtil.success();
     }
 
-    //广播
-    @PostMapping("broadcast")
+
     public void broadcast(){
 
 
     }
 
 
-    //群聊
-    @PostMapping("groupChat")
-    public void groupChat(){
+    public void sendToGroup(){
 
 
     }
-
-
 
 }

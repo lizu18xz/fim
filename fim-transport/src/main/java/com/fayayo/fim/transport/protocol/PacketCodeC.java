@@ -2,12 +2,15 @@ package com.fayayo.fim.transport.protocol;
 
 import com.fayayo.fim.transport.protocol.request.LoginRequestPacket;
 import com.fayayo.fim.transport.protocol.request.LogoutRequestPacket;
+import com.fayayo.fim.transport.protocol.request.MessageRequestPacket;
 import com.fayayo.fim.transport.protocol.response.LoginResponsePacket;
 import com.fayayo.fim.transport.protocol.response.LogoutResponsePacket;
+import com.fayayo.fim.transport.protocol.response.MessageResponsePacket;
 import com.fayayo.fim.transport.serialize.Serializer;
 import com.fayayo.fim.transport.serialize.impl.HessianSerializer;
 import com.fayayo.fim.transport.serialize.impl.JSONSerializer;
 import io.netty.buffer.ByteBuf;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +22,7 @@ import static com.fayayo.fim.transport.protocol.command.Command.*;
  * @version v1.0
  * @desc 封装为二进制过程
  */
+@Slf4j
 public class PacketCodeC {
 
     public static final int MAGIC_NUMBER = 0x12345678;
@@ -46,11 +50,15 @@ public class PacketCodeC {
         packetTypeMap.put(LOGOUT_REQUEST, LogoutRequestPacket.class);
         packetTypeMap.put(LOGOUT_RESPONSE, LogoutResponsePacket.class);
 
+
+        packetTypeMap.put(MESSAGE_REQUEST, MessageRequestPacket.class);
+
+        packetTypeMap.put(MESSAGE_RESPONSE, MessageResponsePacket.class);
+
     }
 
 
     public void encode(ByteBuf byteBuf, Packet packet){
-
         // 1. 创建 ByteBuf 对象
         // 2. 序列化 Java 对象
         byte[] bytes = Serializer.DEFAULT.serialize(packet);
@@ -65,7 +73,6 @@ public class PacketCodeC {
     }
 
     public Packet decode(ByteBuf byteBuf){
-
         // 跳过 magic number
         byteBuf.skipBytes(4);
 
@@ -88,7 +95,7 @@ public class PacketCodeC {
         if (requestType==null){
             throw new RuntimeException("没有配置参数类型");
         }
-
+        log.info("请求参数类型:{}",requestType.getName());
         Serializer serializer = getSerializer(serializeAlgorithm);
 
         if (requestType != null && serializer != null) {

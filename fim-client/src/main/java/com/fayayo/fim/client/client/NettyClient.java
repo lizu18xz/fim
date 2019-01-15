@@ -2,6 +2,7 @@ package com.fayayo.fim.client.client;
 
 import com.fayayo.fim.client.client.handler.LoginResponseHandler;
 import com.fayayo.fim.client.client.handler.LogoutResponseHandler;
+import com.fayayo.fim.client.client.handler.MessageResponseHandler;
 import com.fayayo.fim.common.core.URL;
 import com.fayayo.fim.transport.codec.PacketDecoder;
 import com.fayayo.fim.transport.codec.PacketEncoder;
@@ -60,6 +61,8 @@ public class NettyClient {
                         ch.pipeline().addLast(new PacketDecoder());
 
                         ch.pipeline().addLast(LoginResponseHandler.INSTANCE);
+
+                        ch.pipeline().addLast(MessageResponseHandler.INSTANCE);
 
                         ch.pipeline().addLast(LogoutResponseHandler.INSTANCE);
 
