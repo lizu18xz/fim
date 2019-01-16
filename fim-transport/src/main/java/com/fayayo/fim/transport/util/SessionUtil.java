@@ -51,4 +51,12 @@ public class SessionUtil {
 
         return userIdChannelMap.get(userId);
     }
+
+
+    //获取当前chat所有的连接channel
+    public static Map<String, Channel> getChatChannel(){
+
+        return userIdChannelMap;
+    }
+
 }

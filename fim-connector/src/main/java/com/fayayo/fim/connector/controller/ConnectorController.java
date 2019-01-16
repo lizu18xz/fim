@@ -30,7 +30,7 @@ public class ConnectorController {
     public ResultVO userChat(@RequestBody SendToUserRequest sendToUserRequest){
 
 
-        log.info("params:{}",sendToUserRequest.toString());
+        log.info("userChat params:{}",sendToUserRequest.toString());
         connectorService.userChat(sendToUserRequest);
 
         return ResultVOUtil.success();
@@ -38,9 +38,12 @@ public class ConnectorController {
 
     //广播
     @PostMapping("broadcast")
-    public void broadcast(){
+    public ResultVO broadcast(@RequestBody SendToUserRequest sendToUserRequest){
 
+        log.info("broadcast params:{}",sendToUserRequest.toString());
+        connectorService.broadcast(sendToUserRequest);
 
+        return ResultVOUtil.success();
     }
 
 

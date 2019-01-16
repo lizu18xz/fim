@@ -27,16 +27,19 @@ public class ChatController {
     @PostMapping("sendToUser")
     public ResultVO sendToUser(@RequestBody SendToUserRequest sendToUserRequest){
 
-        log.info("params:{}",sendToUserRequest.toString());
+        log.info("sendToUser params:{}",sendToUserRequest.toString());
         chatService.sendToUser(sendToUserRequest);
 
         return ResultVOUtil.success();
     }
 
+    @PostMapping("broadcast")
+    public ResultVO broadcast(@RequestBody SendToUserRequest sendToUserRequest){
+        log.info("broadcast params:{}",sendToUserRequest.toString());
 
-    public void broadcast(){
+        chatService.broadcast(sendToUserRequest);
 
-
+        return ResultVOUtil.success();
     }
 
 

@@ -11,4 +11,7 @@ public interface ChatService {
 
     void sendToUser(SendToUserRequest sendToUserRequest);
 
+    void broadcast(SendToUserRequest sendToUserRequest);
+
+
 }

@@ -12,5 +12,7 @@ public class ChatReq {
     //私聊
     public static final String CHAT_POST_SEND_TO_USER=CHAT_PREFIX+"/online/sendToUser";
 
+    //广播
+    public static final String CHAT_POST_BROADCAST=CHAT_PREFIX+"/online/broadcast";
 
 }

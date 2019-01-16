@@ -9,6 +9,10 @@ import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 
 /**
  * @author dalizu on 2019/1/15.
@@ -43,7 +47,26 @@ public class ChatServiceImpl implements ChatService {
 
     }
 
+    @Override
+    public void broadcast(SendToUserRequest sendToUserRequest) {
 
+        //构造发送请求包,转发客户端的请求
+        String message=sendToUserRequest.getMsg();
+        String fromUserId=sendToUserRequest.getUserId();
+        //发送广播,轮训发送给所有的用户
+        Map<String, Channel>  userIdChannelMap = SessionUtil.getChatChannel();
+
+        log.info("当前chat服务器的连接数:{}",userIdChannelMap.size());
+
+        //排除发送者
+
+        for (Map.Entry<String, Channel> entry : userIdChannelMap.entrySet()) {
+            if(entry.getKey().equals(fromUserId)){
+                continue;
+            }
+            entry.getValue().writeAndFlush(new MessageResponsePacket(fromUserId,message));
+        }
+    }
 
 
 }

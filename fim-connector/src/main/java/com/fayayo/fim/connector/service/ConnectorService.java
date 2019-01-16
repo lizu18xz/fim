@@ -11,4 +11,6 @@ public interface ConnectorService {
 
     void userChat(SendToUserRequest sendToUserRequest);
 
+    void broadcast(SendToUserRequest sendToUserRequest);
+
 }
