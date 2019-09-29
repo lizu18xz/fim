@@ -27,7 +27,7 @@
 
         <dependency>
             <groupId>com.fayayo</groupId>
-            <artifactId>fim-redis</artifactId>
+            <artifactId>fim-user-chat</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

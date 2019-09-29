@@ -15,6 +15,7 @@
 		<module>fim-admin</module>
         <module>fim-redis</module>
         <module>fim-transport</module>
+        <module>fim-user-chat</module>
     </modules>
 	<name>fim</name>
 	<description>im</description>
