@@ -23,7 +23,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<spring.boot.vsersion>2.1.1.RELEASE</spring.boot.vsersion>
+		<spring.boot.vsersion>2.5.12</spring.boot.vsersion>
 		<commons-lang3.version>3.5</commons-lang3.version>
 		<commons-codec>1.11</commons-codec>
 		<commons-net>3.6</commons-net>
