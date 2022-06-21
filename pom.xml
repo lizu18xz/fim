@@ -30,7 +30,7 @@
 		<commons-io>2.4</commons-io>
 		<lombok.version>1.16.8</lombok.version>
 		<guava.version>20.0</guava.version>
-		<mysql.version>5.1.46</mysql.version>
+		<mysql.version>8.0.28</mysql.version>
 		<codehaus.jackson.version>1.9.13</codehaus.jackson.version>
 		<netty-all.version>4.1.6.Final</netty-all.version>
 		<objenesis.version>2.1</objenesis.version>
