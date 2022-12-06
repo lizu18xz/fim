@@ -26,7 +26,7 @@
 		<spring.boot.vsersion>2.1.1.RELEASE</spring.boot.vsersion>
 		<commons-lang3.version>3.5</commons-lang3.version>
 		<commons-codec>1.11</commons-codec>
-		<commons-net>3.6</commons-net>
+		<commons-net>3.9.0</commons-net>
 		<commons-io>2.4</commons-io>
 		<lombok.version>1.16.8</lombok.version>
 		<guava.version>20.0</guava.version>
